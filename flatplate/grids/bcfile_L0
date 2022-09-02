@@ -1,0 +1,10 @@
+2 iLow bcsymmetryplane sym1
+2 iHigh bcsymmetryplane sym2
+2 kLow bcsymmetryplane sym
+2 kHigh bcfarfield far
+2 jLow bcinflow in
+1 iLow bcsymmetryplane sym1
+1 iHigh bcsymmetryplane sym2
+1 kLow bcwall wall 
+1 kHigh bcfarfield far
+1 jHigh bcoutflowsubsonic out BCDataSet_1 BCOutFlowSubsonic Dirichlet Pressure 101300

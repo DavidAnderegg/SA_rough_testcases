@@ -1,0 +1,18 @@
+flatplate_blanchard_clean_L0
+
+Aero Options
+---------  -------------------------------------------------
+alpha      0
+T          288
+P          101300.0
+V          45
+areaRef    2.0
+chordRef   2.0
+evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
+---------  -------------------------------------------------
+
+
+ RESULTS 
+        cd    forcexmomentum    forcexpressure    forcexviscous    totalRes    iterTot
+----------  ----------------  ----------------  ---------------  ----------  ---------
+1.00207322     2478.70139456        0.01457314       7.71517592  0.00000075         53

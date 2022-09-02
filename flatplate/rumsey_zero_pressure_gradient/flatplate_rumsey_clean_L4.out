@@ -1,0 +1,18 @@
+flatplate_rumsey_clean_L4
+
+Aero Options
+---------  -------------------------------------------------
+alpha      0
+T          300
+P          101300.0
+V          78.554
+areaRef    2.0
+chordRef   2.0
+evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
+---------  -------------------------------------------------
+
+
+ RESULTS 
+        cd    forcexmomentum    forcexpressure    forcexviscous    totalRes    iterTot
+----------  ----------------  ----------------  ---------------  ----------  ---------
+1.00069336     7239.81242678        0.15543381      23.78090741  0.00000000        282

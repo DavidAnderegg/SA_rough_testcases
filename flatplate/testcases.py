@@ -55,6 +55,6 @@ testcases = {
         'vp_comp_data': {
             'Mean SRS2 $ks^+$ ~70': 'vp_SRS2.dat',
         },
-        'vp_x_positions': [1],
+        'vp_x_positions': [1.97],
     },
 }

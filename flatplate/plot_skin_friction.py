@@ -40,13 +40,19 @@ def main():
 
             # convert ks to ks+
             t_inf, p_inf, u_inf, mu_inf, rho_inf = Solution.initial_conditions()
-            u_star = Solution.velocity_wall_scaling(Solution.total_cf())
+
+
+            u, y, rho, cf = Solution.velocity_profile(1.97)
+            # u_star = Solution.velocity_wall_scaling(Solution.total_cf())
+            u_star = Solution.velocity_wall_scaling(cf)
             label = finish
             if 'ks' in finish:
                 ks_str = finish.split('ks')[1]
                 ks = float(ks_str)
                 ks_plus = ks * u_star / (mu_inf / rho_inf)
+                print(ks_plus)
 
+                print(f'$ks^+$ {ks_plus:.0f}')
                 label = f'$ks^+$ {ks_plus:.0f}'
 
             # extract and plot cf

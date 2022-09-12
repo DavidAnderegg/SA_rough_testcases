@@ -15,4 +15,4 @@ evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
  RESULTS 
         cd    forcexmomentum    forcexpressure    forcexviscous    totalRes    iterTot
 ----------  ----------------  ----------------  ---------------  ----------  ---------
-1.00499525      442.43771674        0.00744248       2.10745061  0.00000009         86
+1.00502991      442.43958089        0.00745890       2.12090280  0.00000009         50

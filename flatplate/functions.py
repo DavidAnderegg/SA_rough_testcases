@@ -3,6 +3,8 @@ import os
 import copy
 import h5py
 import operator
+import vtk
+from vtk.util.numpy_support import vtk_to_numpy as vtk2np
 
 def sort_legend(axs):
     handles, labels = axs.get_legend_handles_labels()
@@ -15,21 +17,21 @@ def sort_legend(axs):
 def ADF_load_solution(case, finish, level):
     cgns_vol_file = os.path.join(
         case['base_path'], 'output',
-        case['volume_file'].format(finish=finish, level=level)
+        case['ADF_volume_file'].format(finish=finish, level=level)
     )
     if not os.path.exists(cgns_vol_file):
         return False
 
     cgns_surf_file = os.path.join(
         case['base_path'], 'output',
-        case['surface_file'].format(finish=finish, level=level)
+        case['ADF_surface_file'].format(finish=finish, level=level)
     )
     if not os.path.exists(cgns_surf_file):
         return False
 
     polar_file = os.path.join(
         case['base_path'],
-        case['polar_file'].format(finish=finish, level=level)
+        case['ADF_polar_file'].format(finish=finish, level=level)
     )
     if not os.path.exists(polar_file):
         return False
@@ -38,6 +40,24 @@ def ADF_load_solution(case, finish, level):
 
     return Solution
 
+def SU2_load_solution(case, finish, level):
+    vtu_vol_file = os.path.join(
+        case['base_path'], 'SU2',
+        case['SU2_volume_file'].format(finish=finish, level=level)
+    )
+    if not os.path.exists(vtu_vol_file):
+        return False
+
+    vtu_surf_file = os.path.join(
+        case['base_path'], 'SU2',
+        case['SU2_surface_file'].format(finish=finish, level=level)
+    )
+    if not os.path.exists(vtu_surf_file):
+        return False
+
+    Solution = SU2_FlatPlateSolution(vtu_vol_file, vtu_surf_file)
+
+    return Solution
 
 
 class ADF_FlatPlateSolution:
@@ -132,9 +152,9 @@ class ADF_FlatPlateSolution:
             rho = rho[:-1] + np.diff(rho)
 
             # return values
-            return  x_velocity, z_coords, rho, cf[index]
+            return  x_velocity, z_coords, rho, np.array([mu_inf]), cf[index]
 
-        return np.array([]), np.array([]), np.array([]), np.array([])
+        return np.array([]), np.array([]), np.array([]), np.array([]), np.array([])
 
     def local_cf(self):
         data = self.surf_data['BaseSurfaceSol']
@@ -197,3 +217,73 @@ class ADF_FlatPlateSolution:
         lines = f.readlines()
         f.close()
         return lines
+
+class SU2_FlatPlateSolution:
+    def __init__(self, volume_file, surface_file):
+        self.vol_data = self._read_vtu_file(volume_file)
+        self.surf_data = self._read_vtu_file(surface_file)
+
+    def velocity_profile(self, x=1.0, eps=0.01):
+
+        # first, lets find the x-coords to use
+        x_coords, cf = self.local_cf()
+        diff = np.absolute(x_coords - x)
+        index = diff.argmin()
+
+        # lets skip  this zone if the error is bigger than 'eps'
+        if np.abs(x_coords[index] - x) > eps:
+            return np.array([]), np.array([]), np.array([]), np.array([]), np.array([])
+
+        x_value = x_coords[index]
+        cf_value = cf[index]
+
+        # now, we can find all the indexes of the volume file that have this x-axis
+        coords = vtk2np(self.vol_data.GetPoints().GetData())
+        ind = np.argwhere(coords[:,0] == x_value).T.flatten()
+
+        # lets find the z-coords
+        z_coords = coords[ind]
+        z_coords = z_coords[2:]
+        z_coords = 2 - z_coords[:,1]*(-1)
+
+        # lets find the x-velocity
+        momentum = vtk2np(self.vol_data.GetPointData().GetArray("Momentum"))
+        momentum = momentum[ind]
+        momentum = momentum[2:]
+        momentum = momentum[:,0]
+
+        rho = vtk2np(self.vol_data.GetPointData().GetArray("Density"))
+        rho = rho[ind]
+        rho = rho[2:]
+
+        mu = vtk2np(self.vol_data.GetPointData().GetArray("Laminar_Viscosity"))
+        mu = mu[ind]
+        mu = mu[2:]
+
+        x_velocity = momentum / rho
+
+        return x_velocity, z_coords, rho, mu, cf_value
+
+    def local_cf(self):
+        # first, lets find the x-coords
+        coords = vtk2np(self.surf_data.GetPoints().GetData())
+        x_coords = coords[:,0]
+
+        # now, lets find cf
+        cf = vtk2np(self.surf_data.GetPointData().GetArray("Skin_Friction_Coefficient"))
+        cf = cf[:,0]
+
+        return x_coords[1:], cf[1:]
+
+
+
+
+
+    @ staticmethod
+    def _read_vtu_file(file_path):
+        reader = vtk.vtkXMLUnstructuredGridReader()
+        reader.SetFileName(file_path)
+        reader.Update()
+        output = reader.GetOutput()
+
+        return output

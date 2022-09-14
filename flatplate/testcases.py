@@ -3,9 +3,11 @@ levels = ['L0', 'L1', 'L2', 'L3', 'L4']
 testcases = {
     'rumsey': {
         'base_path': 'rumsey_zero_pressure_gradient',
-        'polar_file': 'flatplate_rumsey_{finish}_{level}.out',
-        'surface_file': 'flatplate_rumsey_{finish}_{level}_surf_hdf.cgns',
-        'volume_file': 'flatplate_rumsey_{finish}_{level}_vol_hdf.cgns',
+        'ADF_polar_file': 'flatplate_rumsey_{finish}_{level}.out',
+        'ADF_surface_file': 'flatplate_rumsey_{finish}_{level}_surf_hdf.cgns',
+        'ADF_volume_file': 'flatplate_rumsey_{finish}_{level}_vol_hdf.cgns',
+        'SU2_surface_file': 'surface_flow_{finish}_{level}.vtu',
+        'SU2_volume_file': 'flow_{finish}_{level}.vtu',
         'finishes': ['clean'],
         'cf_comp_data': {
             'CFL3D': 'CFL3D_cf.dat',
@@ -23,9 +25,9 @@ testcases = {
     },
     'blanchard': {
         'base_path': 'blanchard_zero_pressure_gradient',
-        'polar_file': 'flatplate_blanchard_{finish}_{level}.out',
-        'surface_file': 'flatplate_blanchard_{finish}_{level}_surf_hdf.cgns',
-        'volume_file': 'flatplate_blanchard_{finish}_{level}_vol_hdf.cgns',
+        'ADF_polar_file': 'flatplate_blanchard_{finish}_{level}.out',
+        'ADF_surface_file': 'flatplate_blanchard_{finish}_{level}_surf_hdf.cgns',
+        'ADF_volume_file': 'flatplate_blanchard_{finish}_{level}_vol_hdf.cgns',
         'finishes': ['clean', 'ks1.3e-03'],
         'cf_comp_data': {
             'Exp. Blanchard $ks^+$ ~150': '0pressGrad_cf_exp.csv',
@@ -40,9 +42,9 @@ testcases = {
     },
     'acharya': {
         'base_path': 'acharya_zero_pressure_gradient',
-        'polar_file': 'flatplate_ancharya_{finish}_{level}.out',
-        'surface_file': 'flatplate_ancharya_{finish}_{level}_surf_hdf.cgns',
-        'volume_file': 'flatplate_ancharya_{finish}_{level}_vol_hdf.cgns',
+        'ADF_polar_file': 'flatplate_ancharya_{finish}_{level}.out',
+        'ADF_surface_file': 'flatplate_ancharya_{finish}_{level}_surf_hdf.cgns',
+        'ADF_volume_file': 'flatplate_ancharya_{finish}_{level}_vol_hdf.cgns',
         'finishes': ['clean', 'ks1.2e-03', 'ks2.0e-03'], #, 'ks4.0e-04', 'ks1.1e-03'],
         'cf_comp_data': {
             'SRS1 $ks^+$ ~25': 'cf_SRS1.dat',

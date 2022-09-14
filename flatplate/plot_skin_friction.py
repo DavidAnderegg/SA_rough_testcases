@@ -4,7 +4,7 @@ import os
 import argparse
 
 from testcases import testcases, levels
-from functions import ADF_load_solution, sort_legend
+from functions import ADF_load_solution, SU2_load_solution, sort_legend
 
 
 
@@ -28,16 +28,17 @@ def main():
 
     finish =''
     for finish in case['finishes']:
-        Solution = None
+        label, mu_inf, u_inf, ks = '', 0, 0, 0
+        ADF_Solution = None
         for level in levels:
             # read data from cgns-surface file
-            Solution = ADF_load_solution(case, finish, level)
-            if Solution == False:
+            ADF_Solution = ADF_load_solution(case, finish, level)
+            if ADF_Solution == False:
                 continue
 
             # convert ks to ks+
-            t_inf, p_inf, u_inf, mu_inf, rho_inf = Solution.initial_conditions()
-            u, y, rho, cf = Solution.velocity_profile(1.97)
+            t_inf, p_inf, u_inf, mu_inf, rho_inf = ADF_Solution.initial_conditions()
+            u, y, rho, mu, cf = ADF_Solution.velocity_profile(1.97)
 
             tau = 1/2 * cf * u[-1]**2
             u_star = np.sqrt(tau)
@@ -50,13 +51,13 @@ def main():
                 label = f'$ks^+$ {ks_plus:.0f}'
 
             # extract and plot cf
-            x_coords, cf = Solution.local_cf()
+            x_coords, cf = ADF_Solution.local_cf()
             axs.plot(x_coords, cf, label=f'ADflow {level}, {label}')
 
             # break loop as we have the finest grid
             break
 
-        if Solution is None:
+        if ADF_Solution is None:
             continue
 
         x = np.linspace(1e-6, case['cf_limits']['x'][1], num=300)
@@ -72,6 +73,15 @@ def main():
 
         if cf is not None:
             axs.plot(x, cf, '--', label=f'Theory {label}')
+
+        SU2_Solution = None
+        for level in levels:
+            SU2_Solution = SU2_load_solution(case, finish, level)
+            if SU2_Solution == False:
+                continue
+
+            x_coords, cf = SU2_Solution.local_cf()
+            axs.plot(x_coords, cf, label=f'SU2 {level}, {label}')
 
 
 

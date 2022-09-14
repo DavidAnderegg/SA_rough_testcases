@@ -4,7 +4,7 @@ import os
 import argparse
 
 from testcases import testcases, levels
-from functions import ADF_load_solution, sort_legend
+from functions import ADF_load_solution, SU2_load_solution, sort_legend
 
 
 
@@ -26,22 +26,23 @@ def main():
         axs.plot(data[:,0], data[:,1], '+', label=name)
 
     for finish in case['finishes']:
-        Solution = None
+        ADF_Solution = None
+        label, mu_inf, u_inf, ks = '', 0, 0, 0
         for level in levels:
             # load solution files
-            Solution = ADF_load_solution(case, finish, level)
-            if Solution == False:
+            ADF_Solution = ADF_load_solution(case, finish, level)
+            if ADF_Solution == False:
                 continue
-
 
             for x in case['vp_x_positions']:
                 # extract needed values from solutions
-                u, y, rho, cf = Solution.velocity_profile(x)
-                t_inf, p_inf, u_inf, mu_inf, rho_inf = Solution.initial_conditions()
+                u, y, rho, mu, cf = ADF_Solution.velocity_profile(x)
+                # t_inf, p_inf, u_inf, mu_inf, rho_inf = ADF_Solution.initial_conditions()
+                rho_inf = rho[-1]
+                mu_inf = mu[-1]
 
                 tau = 1/2 * cf * u[-1]**2
                 u_star = np.sqrt(tau)
-
 
                 y_plus = (y * rho_inf * u_star) / mu_inf
                 u_plus = u / u_star
@@ -55,13 +56,12 @@ def main():
 
                     label = f'$ks^+$ {ks_plus:.0f}'
 
-
                 axs.plot(y_plus, u_plus, label=f'ADflow x={x}, {level}, {label}')
 
             # break loop as we have the finest grid
             break
 
-        if Solution is None:
+        if ADF_Solution is None:
             continue
 
         u_plus, y_plus = None, None
@@ -85,6 +85,34 @@ def main():
         if u_plus is not None and y_plus is not None:
             axs.plot(y_plus, u_plus, '--', label=f'Theory {label}')
 
+
+        SU2_Solution = None
+        for level in levels:
+            SU2_Solution = SU2_load_solution(case, finish, level)
+            if SU2_Solution == False:
+                continue
+
+            for x in case['vp_x_positions']:
+                u, y, rho, mu, cf = SU2_Solution.velocity_profile(x)
+                rho_inf = rho[-1]
+                mu_inf = mu[-1]
+
+                tau = 1/2 * cf * u[-1]**2
+                u_star = np.sqrt(tau)
+
+                y_plus = (y * rho_inf * u_star) / mu_inf
+                u_plus = u / u_star
+
+                # convert ks to ks+
+                label = finish
+                if 'ks' in finish:
+                    ks_str = finish.split('ks')[1]
+                    ks = float(ks_str)
+                    ks_plus = ks * u_star / (mu_inf / rho_inf)
+
+                    label = f'$ks^+$ {ks_plus:.0f}'
+
+                axs.plot(y_plus, u_plus, label=f'ADflow x={x}, {level}, {label}')
 
 
 

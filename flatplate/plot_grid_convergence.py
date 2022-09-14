@@ -16,7 +16,7 @@ def main():
     case = testcases[args.case]
 
     N = np.array([208896, 52224, 13056, 3264, 816])
-    h = 1/N
+    h = 1/N**(1/2)
 
     s = 2
     fig = plt.figure(figsize=(6.4*s, 4.8*s), layout='tight')
@@ -48,7 +48,7 @@ def main():
         axs[3].plot(h, cd, '*-')
 
     for ax in axs:
-        ax.set_xlabel('$\\frac{1}{N}$')
+        ax.set_xlabel('$(\\frac{1}{N})^(0.5)$')
         ax.grid()
     axs[0].set_ylabel('$force_{pressure}$')
     axs[1].set_ylabel('$force_{viscous}$')

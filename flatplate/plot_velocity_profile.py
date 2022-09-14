@@ -1,12 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import copy
 import argparse
-import h5py
 
 from testcases import testcases, levels
-from functions import load_solution, sort_legend
+from functions import ADF_load_solution, sort_legend
 
 
 
@@ -31,7 +29,7 @@ def main():
         Solution = None
         for level in levels:
             # load solution files
-            Solution = load_solution(case, finish, level)
+            Solution = ADF_load_solution(case, finish, level)
             if Solution == False:
                 continue
 
@@ -53,8 +51,6 @@ def main():
                 if 'ks' in finish:
                     ks_str = finish.split('ks')[1]
                     ks = float(ks_str)
-                    # ks = 1.1e-3
-                    # ks = 4.0e-4
                     ks_plus = ks * u_star / (mu_inf / rho_inf)
 
                     label = f'$ks^+$ {ks_plus:.0f}'

@@ -12,7 +12,7 @@ def sort_legend(axs):
     axs.legend(handles2, labels2)
 
 
-def load_solution(case, finish, level):
+def ADF_load_solution(case, finish, level):
     cgns_vol_file = os.path.join(
         case['base_path'], 'output',
         case['volume_file'].format(finish=finish, level=level)
@@ -34,13 +34,13 @@ def load_solution(case, finish, level):
     if not os.path.exists(polar_file):
         return False
 
-    Solution = FlatPlateSolution(cgns_vol_file, cgns_surf_file, polar_file)
+    Solution = ADF_FlatPlateSolution(cgns_vol_file, cgns_surf_file, polar_file)
 
     return Solution
 
 
 
-class FlatPlateSolution:
+class ADF_FlatPlateSolution:
     def __init__(self, volume_file, surface_file, polar_file):
         self.vol_data = self._read_cgns_file(volume_file)
         self.surf_data = self._read_cgns_file(surface_file)

@@ -1,13 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import copy
 import argparse
-import operator
-import h5py
 
 from testcases import testcases, levels
-from functions import load_solution, sort_legend
+from functions import ADF_load_solution, sort_legend
 
 
 
@@ -34,14 +31,12 @@ def main():
         Solution = None
         for level in levels:
             # read data from cgns-surface file
-            Solution = load_solution(case, finish, level)
+            Solution = ADF_load_solution(case, finish, level)
             if Solution == False:
                 continue
 
             # convert ks to ks+
             t_inf, p_inf, u_inf, mu_inf, rho_inf = Solution.initial_conditions()
-
-
             u, y, rho, cf = Solution.velocity_profile(1.97)
 
             tau = 1/2 * cf * u[-1]**2
@@ -51,9 +46,7 @@ def main():
                 ks_str = finish.split('ks')[1]
                 ks = float(ks_str)
                 ks_plus = ks * u_star / (mu_inf / rho_inf)
-                print(ks_plus)
 
-                print(f'$ks^+$ {ks_plus:.0f}')
                 label = f'$ks^+$ {ks_plus:.0f}'
 
             # extract and plot cf

@@ -4,7 +4,7 @@ import os
 import argparse
 
 from testcases import testcases, levels
-from functions import load_solution
+from functions import ADF_load_solution
 
 
 def main():
@@ -31,7 +31,7 @@ def main():
     for finish in case['finishes']:
         for n in range(len(levels)):
             level = levels[n]
-            Solution = load_solution(case, finish, level)
+            Solution = ADF_load_solution(case, finish, level)
             if Solution == False:
                 continue
             raw_polar = Solution.polar()

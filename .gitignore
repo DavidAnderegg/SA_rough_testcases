@@ -3,6 +3,9 @@ log
 *.tar
 *.pw
 *.png
+*.su2
+SU2
+*_L*.cfg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

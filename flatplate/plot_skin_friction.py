@@ -43,8 +43,9 @@ def main():
 
 
             u, y, rho, cf = Solution.velocity_profile(1.97)
-            # u_star = Solution.velocity_wall_scaling(Solution.total_cf())
-            u_star = Solution.velocity_wall_scaling(cf)
+
+            tau = 1/2 * cf * u[-1]**2
+            u_star = np.sqrt(tau)
             label = finish
             if 'ks' in finish:
                 ks_str = finish.split('ks')[1]

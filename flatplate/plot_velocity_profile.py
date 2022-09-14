@@ -41,7 +41,8 @@ def main():
                 u, y, rho, cf = Solution.velocity_profile(x)
                 t_inf, p_inf, u_inf, mu_inf, rho_inf = Solution.initial_conditions()
 
-                u_star = Solution.velocity_wall_scaling(cf)
+                tau = 1/2 * cf * u[-1]**2
+                u_star = np.sqrt(tau)
 
 
                 y_plus = (y * rho_inf * u_star) / mu_inf

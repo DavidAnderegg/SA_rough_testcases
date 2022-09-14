@@ -186,15 +186,6 @@ class FlatPlateSolution:
         return polars
 
 
-    def velocity_wall_scaling(self, cf):
-        t_inf, p_inf, u_inf, mu_inf, rho_inf = self.initial_conditions()
-
-        tau = 1/2 * cf * rho_inf * u_inf**2
-        u_star = np.sqrt(tau / rho_inf)
-
-        return u_star
-
-
 
     @staticmethod
     def _read_cgns_file(file_path):

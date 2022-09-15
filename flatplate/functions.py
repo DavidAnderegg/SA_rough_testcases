@@ -41,18 +41,24 @@ def ADF_load_solution(case, finish, level):
     return Solution
 
 def SU2_load_solution(case, finish, level):
-    vtu_vol_file = os.path.join(
-        case['base_path'], 'SU2',
-        case['SU2_volume_file'].format(finish=finish, level=level)
-    )
-    if not os.path.exists(vtu_vol_file):
+    try:
+        vtu_vol_file = os.path.join(
+            case['base_path'], 'SU2',
+            case['SU2_volume_file'].format(finish=finish, level=level)
+        )
+        if not os.path.exists(vtu_vol_file):
+            return False
+    except:
         return False
 
-    vtu_surf_file = os.path.join(
-        case['base_path'], 'SU2',
-        case['SU2_surface_file'].format(finish=finish, level=level)
-    )
-    if not os.path.exists(vtu_surf_file):
+    try:
+        vtu_surf_file = os.path.join(
+            case['base_path'], 'SU2',
+            case['SU2_surface_file'].format(finish=finish, level=level)
+        )
+        if not os.path.exists(vtu_surf_file):
+            return False
+    except:
         return False
 
     Solution = SU2_FlatPlateSolution(vtu_vol_file, vtu_surf_file)

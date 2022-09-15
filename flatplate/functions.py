@@ -122,7 +122,8 @@ class ADF_FlatPlateSolution:
                 continue
 
             # get x-coordinates + cf and figure out which one to use
-            x_coords, cf = self.local_cf()
+            _, cf = self.local_cf()
+            x_coords = zone_data['GridCoordinates']['CoordinateX'][' data'][0,:][:,0]
 
             diff = np.absolute(x_coords - x)
             index = diff.argmin()

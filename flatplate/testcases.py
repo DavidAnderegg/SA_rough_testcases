@@ -61,4 +61,22 @@ testcases = {
         },
         'vp_x_positions': [1.97],
     },
+    'rumsey_comp': {
+        'levels': ['L1'],
+        'base_path': 'rumsey_comp',
+        'ADF_polar_file': 'flatplate_rumsey_comp_{finish}_{level}.out',
+        'ADF_surface_file': 'flatplate_rumsey_comp_{finish}_{level}_surf_hdf.cgns',
+        'ADF_volume_file': 'flatplate_rumsey_comp_{finish}_{level}_vol_hdf.cgns',
+        'SU2_surface_file': 'surface_flow_{finish}_{level}.vtu',
+        'SU2_volume_file': 'flow_{finish}_{level}.vtu',
+        'finishes': ['clean', 'ks1.0e-04'],
+        'cf_comp_data': {},
+        'cf_limits': {
+            'x': [0, 2],
+            'y': [0, 0.008],
+        },
+        'vp_comp_data': {},
+        'vp_x_positions': [0.97],
+    },
+
 }

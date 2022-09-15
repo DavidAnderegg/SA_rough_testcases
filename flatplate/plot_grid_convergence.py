@@ -3,7 +3,7 @@ import numpy as np
 import os
 import argparse
 
-from testcases import testcases, levels
+from testcases import testcases
 from functions import ADF_load_solution
 
 
@@ -29,8 +29,8 @@ def main():
     cd = np.ones_like(N) * np.nan
 
     for finish in case['finishes']:
-        for n in range(len(levels)):
-            level = levels[n]
+        for n in range(len(case['levels'])):
+            level = case['levels'][n]
             Solution = ADF_load_solution(case, finish, level)
             if Solution == False:
                 continue

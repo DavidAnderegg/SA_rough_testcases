@@ -3,7 +3,7 @@ import numpy as np
 import os
 import argparse
 
-from testcases import testcases, levels
+from testcases import testcases
 from functions import ADF_load_solution, SU2_load_solution, sort_legend
 
 
@@ -30,7 +30,7 @@ def main():
     for finish in case['finishes']:
         label, mu_inf, u_inf, ks = '', 0, 0, 0
         ADF_Solution = None
-        for level in levels:
+        for level in case['levels']:
             # read data from cgns-surface file
             ADF_Solution = ADF_load_solution(case, finish, level)
             if ADF_Solution == False:
@@ -75,7 +75,7 @@ def main():
             axs.plot(x, cf, '--', label=f'Theory {label}')
 
         SU2_Solution = None
-        for level in levels:
+        for level in case['levels']:
             SU2_Solution = SU2_load_solution(case, finish, level)
             if SU2_Solution == False:
                 continue

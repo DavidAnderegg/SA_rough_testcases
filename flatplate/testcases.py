@@ -1,7 +1,7 @@
-levels = ['L0', 'L1', 'L2', 'L3', 'L4']
 
 testcases = {
     'rumsey': {
+        'levels': ['L0', 'L1', 'L2', 'L3', 'L4'],
         'base_path': 'rumsey_zero_pressure_gradient',
         'ADF_polar_file': 'flatplate_rumsey_{finish}_{level}.out',
         'ADF_surface_file': 'flatplate_rumsey_{finish}_{level}_surf_hdf.cgns',
@@ -24,6 +24,7 @@ testcases = {
         'vp_x_positions': [0.97, 1.97],
     },
     'blanchard': {
+        'levels': ['L0', 'L1', 'L2', 'L3', 'L4'],
         'base_path': 'blanchard_zero_pressure_gradient',
         'ADF_polar_file': 'flatplate_blanchard_{finish}_{level}.out',
         'ADF_surface_file': 'flatplate_blanchard_{finish}_{level}_surf_hdf.cgns',
@@ -41,6 +42,7 @@ testcases = {
         'vp_x_positions': [0.5],
     },
     'acharya': {
+        'levels': ['L0', 'L1', 'L2', 'L3', 'L4'],
         'base_path': 'acharya_zero_pressure_gradient',
         'ADF_polar_file': 'flatplate_ancharya_{finish}_{level}.out',
         'ADF_surface_file': 'flatplate_ancharya_{finish}_{level}_surf_hdf.cgns',

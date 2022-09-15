@@ -3,7 +3,7 @@ import numpy as np
 import os
 import argparse
 
-from testcases import testcases, levels
+from testcases import testcases
 from functions import ADF_load_solution, SU2_load_solution, sort_legend
 
 
@@ -28,7 +28,7 @@ def main():
     for finish in case['finishes']:
         ADF_Solution = None
         label, mu_inf, u_inf, ks = '', 0, 0, 0
-        for level in levels:
+        for level in case['levels']:
             # load solution files
             ADF_Solution = ADF_load_solution(case, finish, level)
             if ADF_Solution == False:
@@ -87,7 +87,7 @@ def main():
 
 
         SU2_Solution = None
-        for level in levels:
+        for level in case['levels']:
             SU2_Solution = SU2_load_solution(case, finish, level)
             if SU2_Solution == False:
                 continue

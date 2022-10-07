@@ -1,0 +1,18 @@
+flatplate_rumsey_comp_ks2.0e-04_L1
+
+Aero Options
+---------  -------------------------------------------------
+alpha      0
+T          300
+P          101300.0
+V          78.554
+areaRef    2.0
+chordRef   2.0
+evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
+---------  -------------------------------------------------
+
+
+ RESULTS 
+        cd    forcexmomentum    forcexpressure    forcexviscous    totalRes    iterTot
+----------  ----------------  ----------------  ---------------  ----------  ---------
+1.00111256     7242.20063327        0.09245521      24.49854727  0.00000015         68

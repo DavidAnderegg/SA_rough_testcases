@@ -112,7 +112,7 @@ def main():
 
                     label = f'$ks^+$ {ks_plus:.0f}'
 
-                axs.plot(y_plus, u_plus, label=f'ADflow x={x}, {level}, {label}')
+                axs.plot(y_plus, u_plus, label=f'SU2 x={x}, {level}, {label}')
 
 
 
@@ -121,6 +121,7 @@ def main():
     plt.xscale('log')
     # ax.set_xlim(case['cf_limits']['x'])
     # ax.set_xlim(1, 1e4)
+    axs.set_xlim(0.1, 2e4)
     # ax.set_ylim(case['cf_limits']['y'])
     axs.set_ylabel('$u+$')
     axs.set_xlabel('$y+$')

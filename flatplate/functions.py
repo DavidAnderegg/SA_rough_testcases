@@ -112,7 +112,7 @@ class ADF_FlatPlateSolution:
         return p_ref, t_ref, rho_ref, mu_ref, mach
 
 
-    def velocity_profile(self, x=1.0, eps=0.01):
+    def velocity_profile(self, x=1.0, eps=0.05):
         # get rev values so velocity can be non-dimensionalized
         p_ref, t_ref, rho_ref, mu_ref, mach = self.ref_state()
         t_inf, p_inf, u_inf, mu_inf, rho_inf = self.initial_conditions()
@@ -167,19 +167,21 @@ class ADF_FlatPlateSolution:
         data = self.surf_data['BaseSurfaceSol']
 
         surface = None
+        x_coords = np.array([])
+        cf = np.array([])
         for key in data.keys():
-            if 'NSWallAdiabaticBC' in key:
-                surface= data[key]
-                break
+            if not 'NSWallAdiabaticBC' in key:
+                # surface= data[key]
+                # break
+                continue
 
-        if surface is None:
-            return np.array([]) , np.array([])
+            surface= data[key]
 
-        x_coords = surface['GridCoordinates']['CoordinateX'][' data'][:,0]
-        cf = surface['Flow solution']['SkinFrictionMagnitude'][' data'][:,0]
-        # cf is given on nodes, coords on centers -> 1 value to much for velocity
-        cf = cf[:-1] + np.diff(cf)
-
+            x_coords = np.append(x_coords, surface['GridCoordinates']['CoordinateX'][' data'][:,0])
+            cf_tmp = surface['Flow solution']['SkinFrictionMagnitude'][' data'][:,0]
+            # cf is given on nodes, coords on centers -> 1 value to much for velocity
+            cf_tmp = cf_tmp[:-1] + np.diff(cf_tmp)
+            cf = np.append(cf, cf_tmp)
 
         return x_coords, cf
 

@@ -69,8 +69,22 @@ testcases = {
         'ADF_volume_file': 'flatplate_rumsey_comp_{finish}_{level}_vol_hdf.cgns',
         'SU2_surface_file': 'surface_flow_{finish}_{level}.vtu',
         'SU2_volume_file': 'flow_{finish}_{level}.vtu',
-        #'finishes': ['clean', 'ks1.0e-04', 'ks2.0e-04', 'ks2.0e-03'],
         'finishes': ['clean', 'ks1.0e-04', 'ks1.0e-03', 'ks2.0e-03'],
+        'cf_comp_data': {},
+        'cf_limits': {
+            'x': [0, 2],
+            'y': [0, 0.008],
+        },
+        'vp_comp_data': {},
+        'vp_x_positions': [1.5],
+    },
+    'test_BC': {
+        'levels': ['L4'],
+        'base_path': 'test_BC',
+        'ADF_polar_file': 'flatplate_test_BC_{finish}_{level}.out',
+        'ADF_surface_file': 'flatplate_test_BC_{finish}_{level}_surf_hdf.cgns',
+        'ADF_volume_file': 'flatplate_test_BC_{finish}_{level}_vol_hdf.cgns',
+        'finishes': ['clean', 'last1_ks1.0e-03', 'last10_ks1.0e-03'],
         'cf_comp_data': {},
         'cf_limits': {
             'x': [0, 2],

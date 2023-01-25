@@ -1,4 +1,4 @@
-flatplate_blanchard_clean_L1
+flatplate_blanchard_clean_L3
 
 Aero Options
 ---------  -------------------------------------------------
@@ -15,4 +15,4 @@ evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
  RESULTS 
         cd    forcexmomentum    forcexpressure    forcexviscous    totalRes    iterTot
 ----------  ----------------  ----------------  ---------------  ----------  ---------
-1.00204309     2478.58787526        0.02725227       7.74125893  0.00000007         51
+1.00187930     2477.81993542        0.05413609       8.07591002  0.00000000        253

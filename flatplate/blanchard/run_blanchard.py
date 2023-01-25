@@ -15,12 +15,14 @@ def preRunCallBack(solver, ap, n):
     # "Pressure", "PressureStagnation", "Temperature", "TemperatureStagnation", "Thrust", "Heat"
     ap.setBCVar("Pressure", 1013e2, "out")
 
+    solver.setSurfaceRoughness(args.ks, 'wall')
+
 # 4.5e6 -> 2060.5e2
 
 if args.ks == 0:
     finish = 'clean'
 else:
-    finish = f'ks{args.ks:.1e}'
+    finish = f'ks{args.ks:.3e}'
 options = {
     'name': f'flatplate_blanchard_{finish}_L{args.level}',
     'preRunCallBack':  preRunCallBack,
@@ -46,7 +48,7 @@ solverOptions = {
     # Physics Parameters
     'equationType':'RANS',
     'useBlockettes': False,
-    'kssa': args.ks,
+    'useRoughSA': True,
 
     # SA model parameters
     # gives the default noft2 variant:

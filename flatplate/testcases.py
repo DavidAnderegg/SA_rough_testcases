@@ -23,14 +23,13 @@ testcases = {
     },
     'blanchard': {
         'levels': ['L0', 'L1', 'L2', 'L3', 'L4'],
-        'base_path': 'blanchard_zero_pressure_gradient',
+        'base_path': 'blanchard',
         'ADF_polar_file': 'flatplate_blanchard_{finish}_{level}.out',
         'ADF_surface_file': 'flatplate_blanchard_{finish}_{level}_surf_hdf.cgns',
         'ADF_volume_file': 'flatplate_blanchard_{finish}_{level}_vol_hdf.cgns',
-        'finishes': ['clean', 'ks1.3e-03'],
+        'finishes': ['clean', 'ks1.095e-03', 'ks1.3e-03'],
         'cf_comp_data': {
             'Exp. Blanchard $ks^+$ ~150': '0pressGrad_cf_exp.csv',
-            # 'Clean SA paper': '0pressGrad_cf_clean.csv',
         },
         'cf_limits': {
             'x': [0, 0.5],

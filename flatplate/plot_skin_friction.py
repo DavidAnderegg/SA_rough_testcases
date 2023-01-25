@@ -68,8 +68,8 @@ def main():
             cf = 0.02296 * Re_x**(-0.139)
 
         # rough regime (jaffer_rough page 6)
-        if 'ks' in finish:
-            cf = (3.476 + 0.707 * np.log(x/ks))**(-2.46)
+        # if 'ks' in finish:
+        #     cf = (3.476 + 0.707 * np.log(x/ks))**(-2.46)
 
         if cf is not None:
             axs.plot(x, cf, '--', label=f'Theory {label}')

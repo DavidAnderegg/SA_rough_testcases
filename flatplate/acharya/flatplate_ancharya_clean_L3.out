@@ -1,4 +1,4 @@
-flatplate_ancharya_clean_L2
+flatplate_ancharya_clean_L3
 
 Aero Options
 ---------  -------------------------------------------------
@@ -15,4 +15,4 @@ evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
  RESULTS 
         cd    forcexmomentum    forcexpressure    forcexviscous    totalRes    iterTot
 ----------  ----------------  ----------------  ---------------  ----------  ---------
-1.00362900      442.32885574        0.00966782       1.60973512  0.00000001         65
+1.00358108      442.19702262        0.01733064       1.71271116  0.00000001         61

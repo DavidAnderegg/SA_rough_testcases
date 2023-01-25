@@ -1,4 +1,4 @@
-flatplate_ancharya_ks2.0e-03_L0
+flatplate_ancharya_clean_L2
 
 Aero Options
 ---------  -------------------------------------------------
@@ -15,4 +15,4 @@ evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
  RESULTS 
         cd    forcexmomentum    forcexpressure    forcexviscous    totalRes    iterTot
 ----------  ----------------  ----------------  ---------------  ----------  ---------
-1.00607063      442.55392185        0.00426856       2.47010848  0.00000053         56
+1.00362900      442.32885574        0.00966782       1.60973512  0.00000001         51

@@ -40,11 +40,11 @@ testcases = {
     },
     'acharya': {
         'levels': ['L0', 'L1', 'L2', 'L3', 'L4'],
-        'base_path': 'acharya_zero_pressure_gradient',
+        'base_path': 'acharya',
         'ADF_polar_file': 'flatplate_ancharya_{finish}_{level}.out',
         'ADF_surface_file': 'flatplate_ancharya_{finish}_{level}_surf_hdf.cgns',
         'ADF_volume_file': 'flatplate_ancharya_{finish}_{level}_vol_hdf.cgns',
-        'finishes': ['clean', 'ks1.2e-03', 'ks2.0e-03'], #, 'ks4.0e-04', 'ks1.1e-03'],
+        'finishes': ['clean', 'ks5.000e-04', 'ks1.205e-03', 'ks2.000e-03'], #, 'ks4.0e-04', 'ks1.1e-03'],
         'cf_comp_data': {
             'SRS1 $ks^+$ ~25': 'cf_SRS1.dat',
             'SRS2 $ks^+$ ~70': 'cf_SRS2.dat',

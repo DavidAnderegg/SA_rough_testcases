@@ -13,14 +13,14 @@ def preRunCallBack(solver, ap, n):
     # possible values are:
     # "Pressure", "PressureStagnation", "Temperature", "TemperatureStagnation", "Thrust", "Heat"
     ap.setBCVar("Pressure", 1013.0e2, "out")
-    pass
+    solver.setSurfaceRoughness(args.ks, 'wall')
 
 
 
 if args.ks == 0:
     finish = 'clean'
 else:
-    finish = f'ks{args.ks:.1e}'
+    finish = f'ks{args.ks:.3e}'
 options = {
     'name': f'flatplate_ancharya_{finish}_L{args.level}',
     'preRunCallBack':  preRunCallBack,
@@ -46,7 +46,7 @@ solverOptions = {
     # Physics Parameters
     'equationType':'RANS',
     'useBlockettes': False,
-    'kssa': args.ks,
+    'useRoughSA': True,
 
     # SA model parameters
     # gives the default noft2 variant:

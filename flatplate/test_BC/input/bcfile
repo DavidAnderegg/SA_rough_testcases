@@ -1,0 +1,118 @@
+1 iLow bcsymmetryplane sym1
+1 iHigh bcsymmetryplane sym2
+1 kLow bcsymmetryplane sym
+1 kHigh bcfarfield far
+1 jLow bcinflow in
+2 iLow bcsymmetryplane sym
+2 iHigh bcsymmetryplane sym2
+2 kLow bcwall wall1 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+2 kHigh bcfarfield far
+3 iLow bcsymmetryplane sym
+3 iHigh bcsymmetryplane sym2
+3 kLow bcwall wall2 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+3 kHigh bcfarfield far
+4 iLow bcsymmetryplane sym
+4 iHigh bcsymmetryplane sym2
+4 kLow bcwall wall3 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+4 kHigh bcfarfield far
+5 iLow bcsymmetryplane sym
+5 iHigh bcsymmetryplane sym2
+5 kLow bcwall wall4 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+5 kHigh bcfarfield far
+6 iLow bcsymmetryplane sym
+6 iHigh bcsymmetryplane sym2
+6 kLow bcwall wall5 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+6 kHigh bcfarfield far
+7 iLow bcsymmetryplane sym
+7 iHigh bcsymmetryplane sym2
+7 kLow bcwall wall6 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+7 kHigh bcfarfield far
+8 iLow bcsymmetryplane sym
+8 iHigh bcsymmetryplane sym2
+8 kLow bcwall wall7 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+8 kHigh bcfarfield far
+9 iLow bcsymmetryplane sym
+9 iHigh bcsymmetryplane sym2
+9 kLow bcwall wall8 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+9 kHigh bcfarfield far
+10 iLow bcsymmetryplane sym
+10 iHigh bcsymmetryplane sym2
+10 kLow bcwall wall9 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+10 kHigh bcfarfield far
+11 iLow bcsymmetryplane sym
+11 iHigh bcsymmetryplane sym2
+11 kLow bcwall wall10 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+11 kHigh bcfarfield far
+12 iLow bcsymmetryplane sym
+12 iHigh bcsymmetryplane sym2
+12 kLow bcwall wall11 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+12 kHigh bcfarfield far
+13 iLow bcsymmetryplane sym
+13 iHigh bcsymmetryplane sym2
+13 kLow bcwall wall12 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+13 kHigh bcfarfield far
+14 iLow bcsymmetryplane sym
+14 iHigh bcsymmetryplane sym2
+14 kLow bcwall wall13 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+14 kHigh bcfarfield far
+15 iLow bcsymmetryplane sym
+15 iHigh bcsymmetryplane sym2
+15 kLow bcwall wall14 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+15 kHigh bcfarfield far
+16 iLow bcsymmetryplane sym
+16 iHigh bcsymmetryplane sym2
+16 kLow bcwall wall15 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+16 kHigh bcfarfield far
+17 iLow bcsymmetryplane sym
+17 iHigh bcsymmetryplane sym2
+17 kLow bcwall wall16 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+17 kHigh bcfarfield far
+18 iLow bcsymmetryplane sym
+18 iHigh bcsymmetryplane sym2
+18 kLow bcwall wall17 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+18 kHigh bcfarfield far
+19 iLow bcsymmetryplane sym
+19 iHigh bcsymmetryplane sym2
+19 kLow bcwall wall18 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+19 kHigh bcfarfield far
+20 iLow bcsymmetryplane sym
+20 iHigh bcsymmetryplane sym2
+20 kLow bcwall wall19 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+20 kHigh bcfarfield far
+21 iLow bcsymmetryplane sym
+21 iHigh bcsymmetryplane sym2
+21 kLow bcwall wall20 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+21 kHigh bcfarfield far
+22 iLow bcsymmetryplane sym
+22 iHigh bcsymmetryplane sym2
+22 kLow bcwall wall21 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+22 kHigh bcfarfield far
+23 iLow bcsymmetryplane sym
+23 iHigh bcsymmetryplane sym2
+23 kLow bcwall wall22 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+23 kHigh bcfarfield far
+24 iLow bcsymmetryplane sym
+24 iHigh bcsymmetryplane sym2
+24 kLow bcwall wall23 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+24 kHigh bcfarfield far
+25 iLow bcsymmetryplane sym
+25 iHigh bcsymmetryplane sym2
+25 kLow bcwall wall24 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+25 kHigh bcfarfield far
+26 iLow bcsymmetryplane sym
+26 iHigh bcsymmetryplane sym2
+26 kLow bcwall wall25 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+26 kHigh bcfarfield far
+27 iLow bcsymmetryplane sym
+27 iHigh bcsymmetryplane sym2
+27 kLow bcwall wall26 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+27 kHigh bcfarfield far
+28 iLow bcsymmetryplane sym
+28 iHigh bcsymmetryplane sym2
+28 kLow bcwall wall27 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+28 kHigh bcfarfield far
+29 iLow bcsymmetryplane sym
+29 iHigh bcsymmetryplane sym2
+29 kLow bcwall wall28 BCDataSet_1 BCWall Dirichlet SandGrainRoughness 0.0
+29 kHigh bcfarfield far
+29 jHigh bcoutflowsubsonic out BCDataSet_1 BCOutFlowSubsonic Dirichlet Pressure 101300

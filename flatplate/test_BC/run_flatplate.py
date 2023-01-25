@@ -1,12 +1,12 @@
 from adflow_util import ADFLOW_UTIL
 import argparse
 import os
+import numpy as np
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-level', type=int, default=4,
                 help='The mesh level to revine')
-parser.add_argument('-ks', type=float, default=0.0,
-                    help='Equivalen sand-grain roughness')
+parser.add_argument('-finish', type=str, default='clean')
 args = parser.parse_args()
 
 
@@ -14,16 +14,29 @@ def preRunCallBack(solver, ap, n):
 
     # possible values are:
     # "Pressure", "PressureStagnation", "Temperature", "TemperatureStagnation", "Thrust", "Heat"
-    ap.setBCVar("Pressure", 1013e2, "out")
+    ap.setBCVar("Pressure", 1000e2, "out")
 
-    solver.setSurfaceRoughness(args.ks, 'wall')
+    # set ks-values
+    ks = np.zeros(28)
+    if args.finish == 'last1_ks1.0e-03':
+        ks[-1] = 1.0e-3
+    if args.finish == 'last10_ks1.0e-03':
+        ks[-10:] = 1.0e-3
+    print(ks)
+    walls = []
+    for n in range(10, 28):
+        wall = f"wall{n+1}"
+        if ks[n] > 0:
+            ap.setBCVar("SandGrainRoughness", ks[n], wall)
+        walls.append(wall)
 
-if args.ks == 0:
-    finish = 'clean'
-else:
-    finish = f'ks{args.ks:.1e}'
+    # combine all walls to wall
+    solver.addFamilyGroup('wall', walls)
+
+
+
 options = {
-    'name': f'flatplate_rumsey_comp_{finish}_L{args.level}',
+    'name': f'flatplate_test_BC_{args.finish}_L{args.level}',
     'preRunCallBack':  preRunCallBack,
     'autoRestart': False,
 }
@@ -41,13 +54,13 @@ aeroOptions = {
 
 solverOptions = {
     # Common Parameters
-    'gridFile': os.path.join('..', 'grids', f'flatplate_L{args.level}.cgns'),
+    'gridFile': f'input/flatplate_split_L{args.level}.cgns',
     'outputDirectory':'output',
 
     # Physics Parameters
     'equationType':'RANS',
     'useBlockettes': False,
-#    'kssa': args.ks,
+    # 'kssa': 1e-4,
     'useRoughSA': True,
 
     # SA model parameters

@@ -69,7 +69,7 @@ testcases = {
         'ADF_volume_file': 'flatplate_rumsey_comp_{finish}_{level}_vol_hdf.cgns',
         'SU2_surface_file': 'surface_flow_{finish}_{level}.vtu',
         'SU2_volume_file': 'flow_{finish}_{level}.vtu',
-        'finishes': ['clean', 'ks1.0e-04', 'ks1.0e-03', 'ks2.0e-03'],
+        'finishes': ['clean', 'ks1.0e-04'], # 'ks1.0e-03', 'ks2.0e-03'],
         'cf_comp_data': {},
         'cf_limits': {
             'x': [0, 2],

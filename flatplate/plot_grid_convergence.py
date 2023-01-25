@@ -48,7 +48,7 @@ def main():
         axs[3].plot(h, cd, '*-')
 
     for ax in axs:
-        ax.set_xlabel('$(\\frac{1}{N})^(0.5)$')
+        ax.set_xlabel('$\\sqrt{\\frac{1}{N}}$')
         ax.grid()
     axs[0].set_ylabel('$force_{pressure}$')
     axs[1].set_ylabel('$force_{viscous}$')

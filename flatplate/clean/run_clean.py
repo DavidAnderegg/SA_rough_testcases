@@ -5,18 +5,20 @@ import os
 parser = argparse.ArgumentParser()
 parser.add_argument('-level', type=int, default=4,
                 help='The mesh level to revine')
+parser.add_argument('-ks', type=float, default=0)
 args = parser.parse_args()
 
 
 def preRunCallBack(solver, ap, n):
 
     # possible values are:
-    # "Pressure", "PressureStagnation", "Temperature", "TemperatureStagnation", "Thrust", "Heat"
     ap.setBCVar("Pressure", 1013e2, "out")
+
+    solver.setSurfaceRoughness(args.ks, 'wall')
 
 
 options = {
-    'name': f'flatplate_rumsey_clean_L{args.level}',
+    'name': f'flatplate_clean_L{args.level}',
     'preRunCallBack':  preRunCallBack,
     'autoRestart': False,
 }
@@ -45,6 +47,9 @@ solverOptions = {
     "eddyvisinfratio": 0.210438,
     "useft2SA": False,
     "turbulenceproduction": "vorticity",
+
+    "useBlockettes": False,
+    "useRoughSA": True,
 
     # ANK
     'useanksolver': True,

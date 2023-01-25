@@ -1,13 +1,11 @@
 
 testcases = {
-    'rumsey': {
+    'clean': {
         'levels': ['L0', 'L1', 'L2', 'L3', 'L4'],
-        'base_path': 'rumsey_zero_pressure_gradient',
-        'ADF_polar_file': 'flatplate_rumsey_{finish}_{level}.out',
-        'ADF_surface_file': 'flatplate_rumsey_{finish}_{level}_surf_hdf.cgns',
-        'ADF_volume_file': 'flatplate_rumsey_{finish}_{level}_vol_hdf.cgns',
-        'SU2_surface_file': 'surface_flow_{finish}_{level}.vtu',
-        'SU2_volume_file': 'flow_{finish}_{level}.vtu',
+        'base_path': 'clean',
+        'ADF_polar_file': 'flatplate_{finish}_{level}.out',
+        'ADF_surface_file': 'flatplate_{finish}_{level}_surf_hdf.cgns',
+        'ADF_volume_file': 'flatplate_{finish}_{level}_vol_hdf.cgns',
         'finishes': ['clean'],
         'cf_comp_data': {
             'CFL3D': 'CFL3D_cf.dat',

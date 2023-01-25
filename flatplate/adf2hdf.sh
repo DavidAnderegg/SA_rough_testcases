@@ -2,7 +2,7 @@
 
 # Converts the output-surface files from 'adf' to 'hdf5'
 
-folders=('blanchard_zero_pressure_gradient' 'rumsey_zero_pressure_gradient' 'acharya_zero_pressure_gradient' 'rumsey_comp' 'test_BC')
+folders=('blanchard' 'clean' 'acharya' 'su2' 'test_BC')
 
 
 for folder in "${folders[@]}"; do

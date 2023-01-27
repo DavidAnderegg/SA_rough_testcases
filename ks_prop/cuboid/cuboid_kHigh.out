@@ -1,0 +1,18 @@
+cuboid_kHigh
+
+Aero Options
+---------  -------------------------------------------------
+alpha      0
+T          300
+P          101300.0
+V          78.554
+areaRef    2.0
+chordRef   2.0
+evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
+---------  -------------------------------------------------
+
+
+ RESULTS 
+         cd    forcexmomentum    forcexpressure    forcexviscous     totalRes    iterTot
+-----------  ----------------  ----------------  ---------------  -----------  ---------
+19.18521823        0.00000000   139259.87893704       0.16883373  19.64547013          1

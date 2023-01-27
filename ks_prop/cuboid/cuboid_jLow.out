@@ -1,0 +1,18 @@
+cuboid_jLow
+
+Aero Options
+---------  -------------------------------------------------
+alpha      0
+T          300
+P          101300.0
+V          78.554
+areaRef    2.0
+chordRef   2.0
+evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
+---------  -------------------------------------------------
+
+
+ RESULTS 
+         cd    forcexmomentum    forcexpressure    forcexviscous     totalRes    iterTot
+-----------  ----------------  ----------------  ---------------  -----------  ---------
+19.09811617        0.00000000   138627.63019103       0.16850368  19.55824709          1

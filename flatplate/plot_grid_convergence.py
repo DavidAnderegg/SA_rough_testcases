@@ -73,6 +73,7 @@ def main():
 
     for ax in axs:
         ax.set_xlabel('$\\sqrt{\\frac{1}{N}}$', labelpad=5)
+        ax.set_xlim(0, None)
     # axs[0].set_ylabel('$force_{pressure}$', labelpad=5)
     axs[0].set_ylabel(f'$C_f$ @ x={cf_x}', labelpad=5)
     axs[1].set_ylabel('$force_{viscous}$', labelpad=5)

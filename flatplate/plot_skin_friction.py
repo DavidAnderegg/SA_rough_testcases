@@ -1,7 +1,10 @@
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import numpy as np
 import os
 import argparse
+
+plt.style.use('tableau-colorblind10')
 
 from testcases import testcases
 from functions import ADF_load_solution, SU2_load_solution, sort_legend
@@ -13,12 +16,23 @@ def main():
     parser.add_argument('-case', type=str, default='rumsey',
                     help='The Test-case to plot, possible values are: rumsey, blanchard, acharya')
     args = parser.parse_args()
+
+    # set style stuff
+    mpl.rcParams['font.family'] = 'Avenir'
+    plt.rcParams['font.size'] = 10
+    plt.rcParams['axes.linewidth'] = 2
+
     case = testcases[args.case]
 
-    s = 2
+    s = 1.5
     fig = plt.figure(figsize=(6.4*s, 4.8*s), layout='tight')
     axs = fig.subplots(1,1)
 
+    # Edit the major and minor ticks of the x and y axes
+    axs.xaxis.set_tick_params(which='major', size=10, width=1.5, direction='in')
+    axs.yaxis.set_tick_params(which='major', size=10, width=1.5, direction='in')
+    axs.xaxis.set_tick_params(which='minor', size=7, width=1, direction='in')
+    axs.yaxis.set_tick_params(which='minor', size=7, width=1, direction='in')
 
     # Comparsion Data
     for name, path in case['cf_comp_data'].items():
@@ -81,7 +95,7 @@ def main():
                 continue
 
             x_coords, cf = SU2_Solution.local_cf()
-            axs.plot(x_coords, cf, label=f'SU2 {level}, {label}')
+            axs.plot(x_coords, cf, ':', label=f'SU2 {level}, {label}')
 
 
 
@@ -94,7 +108,8 @@ def main():
 
     sort_legend(axs)
 
-    axs.grid()
+
+    # axs.grid()
     plt.suptitle(f'Flat plate, Zero pressure gradient, {args.case}')
     plt.show()
 

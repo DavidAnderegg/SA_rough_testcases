@@ -12,8 +12,8 @@ testcases = {
             'FUN3D': 'FUN3D_cf.dat',
         },
         'cf_limits': {
-            'x': [0, 2],
-            'y': [0, 0.008],
+            'x': [-0.05, 2],
+            'y': [0.002, 0.006],
         },
         'vp_comp_data': {
             'CFL3D x=0.97': 'u+y+_x0.97008.dat',
@@ -32,8 +32,8 @@ testcases = {
             'Exp. Blanchard $ks^+$ ~150': '0pressGrad_cf_exp.csv',
         },
         'cf_limits': {
-            'x': [0, 0.5],
-            'y': [0, 0.014],
+            'x': [-0.012, 0.5],
+            'y': [0.002, 0.014],
         },
         'vp_comp_data': {},
         'vp_x_positions': [0.5],
@@ -50,8 +50,8 @@ testcases = {
             'SRS2 $ks^+$ ~70': 'cf_SRS2.dat',
         },
         'cf_limits': {
-            'x': [0, 3],
-            'y': [0, 0.01],
+            'x': [-0.07, 3],
+            'y': [0.002, 0.014],
         },
         'vp_comp_data': {
             'Mean SRS2 $ks^+$ ~70': 'vp_SRS2.dat',
@@ -69,8 +69,8 @@ testcases = {
         'finishes': ['clean', 'ks1.0e-04', 'ks1.0e-03'],
         'cf_comp_data': {},
         'cf_limits': {
-            'x': [0, 2],
-            'y': [0, 0.008],
+            'x': [-0.05, 2],
+            'y': [0.002, 0.01],
         },
         'vp_comp_data': {},
         'vp_x_positions': [1.5],

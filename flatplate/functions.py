@@ -11,7 +11,7 @@ def sort_legend(axs):
     hl = sorted(zip(handles, labels),
             key=operator.itemgetter(1))
     handles2, labels2 = zip(*hl)
-    axs.legend(handles2, labels2)
+    axs.legend(handles2, labels2, frameon=False, fontsize=10, borderpad=1)
 
 
 def ADF_load_solution(case, finish, level):

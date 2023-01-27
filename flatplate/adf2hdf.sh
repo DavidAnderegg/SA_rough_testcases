@@ -2,7 +2,7 @@
 
 # Converts the output-surface files from 'adf' to 'hdf5'
 
-folders=('blanchard' 'clean' 'acharya' 'su2' 'test_BC')
+folders=('blanchard' 'clean' 'acharya' 'su2' 'rumsey_comp' 'test_BC')
 
 
 for folder in "${folders[@]}"; do

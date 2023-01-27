@@ -7,6 +7,11 @@ log
 SU2
 *_L*.cfg
 
+*.pvsm
+
+#unignore some initial mesh-files
+!cube/cube_surf.cgns
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

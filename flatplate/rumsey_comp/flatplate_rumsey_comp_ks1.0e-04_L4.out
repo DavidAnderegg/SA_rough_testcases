@@ -1,4 +1,4 @@
-flatplate_rumsey_comp_clean_L1
+flatplate_rumsey_comp_ks1.0e-04_L4
 
 Aero Options
 ---------  -------------------------------------------------
@@ -15,4 +15,4 @@ evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
  RESULTS 
         cd    forcexmomentum    forcexpressure    forcexviscous    totalRes    iterTot
 ----------  ----------------  ----------------  ---------------  ----------  ---------
-1.00092271     7244.37953072        0.07896221      20.95507226  0.00000006         52
+1.00073434     7239.14267895        0.16134145      24.74222462  0.00000000        283

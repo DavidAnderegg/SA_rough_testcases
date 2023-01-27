@@ -1,11 +1,11 @@
-flatplate_rumsey_comp_clean_L1
+flatplate_blanchard_ks1.095e-03_L1
 
 Aero Options
 ---------  -------------------------------------------------
 alpha      0
-T          300
+T          288
 P          101300.0
-V          78.554
+V          45
 areaRef    2.0
 chordRef   2.0
 evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
@@ -15,4 +15,4 @@ evalFuncs  forcexpressure, forcexviscous, forcexmomentum, cd
  RESULTS 
         cd    forcexmomentum    forcexpressure    forcexviscous    totalRes    iterTot
 ----------  ----------------  ----------------  ---------------  ----------  ---------
-1.00092271     7244.37953072        0.07896221      20.95507226  0.00000006         52
+1.00358790     2477.57710465        0.04361688      12.56877212  0.00000029         61

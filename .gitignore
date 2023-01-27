@@ -12,6 +12,7 @@ SU2
 #unignore some initial mesh-files
 !cube_surf.cgns
 !cuboid_surf.cgns
+!mdo_tutorial_rans.cgns
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

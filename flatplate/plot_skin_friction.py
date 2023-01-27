@@ -54,17 +54,19 @@ def main():
             tau = 1/2 * cf * u[-1]**2
             u_star = np.sqrt(tau)
             label = finish
+            if finish == 'clean':
+                label = '$k_s^+ = 0$'
             if 'ks' in finish:
                 ks_str = finish.split('ks')[1]
                 ks = float(ks_str)
                 ks_plus = ks * u_star / (mu_inf / rho_inf)
 
-                label = f'$ks^+$ {ks_plus:.0f}'
+                label = f'$k_s^+ = {ks_plus:.0f}$'
 
             # extract and plot cf
             color=next(axs._get_lines.prop_cycler)['color']
             x_coords, cf = ADF_Solution.local_cf()
-            axs.plot(x_coords, cf, label=f'ADflow {level}, {label}', color=color)
+            axs.plot(x_coords, cf, label=f'ADflow, {label}', color=color)
 
             # break loop as we have the finest grid
             break
@@ -84,7 +86,7 @@ def main():
         #     cf = (3.476 + 0.707 * np.log(x/ks))**(-2.46)
 
         if cf is not None:
-            axs.plot(x, cf, '--', label=f'Theory {label}', color=color)
+            axs.plot(x, cf, '--', label=f'Theory, {label}', color=color)
 
         SU2_Solution = None
         for level in case['levels']:
@@ -93,7 +95,7 @@ def main():
                 continue
 
             x_coords, cf = SU2_Solution.local_cf()
-            axs.plot(x_coords, cf, ':', label=f'SU2 {level}, {label}', color=color)
+            axs.plot(x_coords, cf, ':', label=f'SU2, {label}', color=color)
 
     # Comparsion Data
     for name, path in case['cf_comp_data'].items():

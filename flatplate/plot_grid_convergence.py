@@ -58,8 +58,13 @@ def main():
                 continue
             raw_polar = Solution.polar()
 
+            u, y, rho, mu, local_cf = Solution.velocity_profile(cf_x)
+            rho_inf = rho[-1]
+            mu_inf = mu[-1]
 
-            _, _, _, _, local_cf = Solution.velocity_profile(cf_x)
+            tau = 1/2 * local_cf * u[-1]**2
+            u_star = np.sqrt(tau)
+
 
             xp[n] = raw_polar['forcexpressure']
             xv[n] = raw_polar['forcexviscous']
@@ -67,11 +72,22 @@ def main():
             cd[n] = raw_polar['cd']
             cf[n] = local_cf
 
+        label = finish
+        if finish == 'clean':
+            label = '$k_s^+ = 0$'
+        if 'ks' in finish:
+            ks_str = finish.split('ks')[1]
+            ks = float(ks_str)
+            ks_plus = ks * u_star / (mu_inf / rho_inf)
+
+            label = f'$ks^+ = {ks_plus:.0f}$'
+
+
         # axs[0].plot(h, xp, '*-', label=finish)
-        axs[0].plot(h, cf, '*-', label=finish)
-        axs[1].plot(h, xv, '*-')
-        axs[2].plot(h, xm, '*-')
-        axs[3].plot(h, cd, '*-')
+        axs[0].plot(h, cf, 'o-', label=label)
+        axs[1].plot(h, xv, 'o-')
+        axs[2].plot(h, xm, 'o-')
+        axs[3].plot(h, cd, 'o-')
 
     for ax in axs:
         ax.set_xlabel('$\\sqrt{\\frac{1}{N}}$', labelpad=5)

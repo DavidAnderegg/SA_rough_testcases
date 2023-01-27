@@ -8,16 +8,16 @@ testcases = {
         'ADF_volume_file': 'flatplate_{finish}_{level}_vol_hdf.cgns',
         'finishes': ['clean'],
         'cf_comp_data': {
-            'CFL3D': 'CFL3D_cf.dat',
+            'CFL3D, $k_s^+ = 0$': 'CFL3D_cf.dat',
             # 'FUN3D': 'FUN3D_cf.dat',
         },
         'cf_limits': {
-            'x': [-0.05, 2],
+            'x': [-0.08, 2],
             'y': [0.002, 0.006],
         },
         'vp_comp_data': {
-            'CFL3D x=0.97': 'u+y+_x0.97008.dat',
-            'CFL3D x=1.9': 'u+y+_x1.90334.dat',
+            'CFL3D, $x=0.97$, $k_s^+ = 0$': 'u+y+_x0.97008.dat',
+            'CFL3D, $x=1.9$, $k_s^+ = 0$': 'u+y+_x1.90334.dat',
         },
         'vp_x_positions': [0.97, 1.97],
     },
@@ -29,10 +29,10 @@ testcases = {
         'ADF_volume_file': 'flatplate_blanchard_{finish}_{level}_vol_hdf.cgns',
         'finishes': ['clean', 'ks1.095e-03', 'ks1.3e-03'],
         'cf_comp_data': {
-            'Exp. Blanchard $ks^+$ ~150': '0pressGrad_cf_exp.csv',
+            'Experiment, $k_s^+ \\approx 150$': '0pressGrad_cf_exp.csv',
         },
         'cf_limits': {
-            'x': [-0.012, 0.5],
+            'x': [-0.017, 0.5],
             'y': [0.002, 0.014],
         },
         'vp_comp_data': {},
@@ -45,13 +45,14 @@ testcases = {
         'ADF_surface_file': 'flatplate_ancharya_{finish}_{level}_surf_hdf.cgns',
         'ADF_volume_file': 'flatplate_ancharya_{finish}_{level}_vol_hdf.cgns',
         'finishes': ['clean', 'ks5.000e-04', 'ks1.205e-03', 'ks2.000e-03'], #, 'ks4.0e-04', 'ks1.1e-03'],
+        'finishes': ['clean', 'ks5.000e-04', 'ks1.205e-03'], #, 'ks4.0e-04', 'ks1.1e-03'],
         'cf_comp_data': {
-            'SRS1 $ks^+$ ~25': 'cf_SRS1.dat',
-            'SRS2 $ks^+$ ~70': 'cf_SRS2.dat',
+            'SRS1, $k_s^+ \\approx 25$': 'cf_SRS1.dat',
+            'SRS2, $k_s^+ \\approx 70$': 'cf_SRS2.dat',
         },
         'cf_limits': {
-            'x': [-0.07, 3],
-            'y': [0.002, 0.014],
+            'x': [-0.10, 3],
+            'y': [0.002, 0.01],
         },
         'vp_comp_data': {
             'Mean SRS2 $ks^+$ ~70': 'vp_SRS2.dat',
@@ -69,7 +70,7 @@ testcases = {
         'finishes': ['clean', 'ks1.0e-04', 'ks1.0e-03'],
         'cf_comp_data': {},
         'cf_limits': {
-            'x': [-0.05, 2],
+            'x': [-0.08, 2],
             'y': [0.002, 0.01],
         },
         'vp_comp_data': {},

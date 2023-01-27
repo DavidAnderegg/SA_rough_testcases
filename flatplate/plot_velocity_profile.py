@@ -62,15 +62,18 @@ def main():
 
                 # convert ks to ks+
                 label = finish
+                if finish == 'clean':
+                    label = '$k_s^+=0$'
+
                 if 'ks' in finish:
                     ks_str = finish.split('ks')[1]
                     ks = float(ks_str)
                     ks_plus = ks * u_star / (mu_inf / rho_inf)
 
-                    label = f'$ks^+$ {ks_plus:.0f}'
+                    label = f'$k_s^+ = {ks_plus:.0f}$'
 
                 color=next(axs._get_lines.prop_cycler)['color']
-                axs.plot(y_plus, u_plus, label=f'ADflow x={x}, {level}, {label}', color=color)
+                axs.plot(y_plus, u_plus, label=f'ADflow, $x={x}$, {label}', color=color)
 
             # break loop as we have the finest grid
             break
@@ -101,7 +104,7 @@ def main():
             y_plus[ind] = np.nan
 
         if u_plus is not None and y_plus is not None:
-            axs.plot(y_plus, u_plus, '--', label=f'Theory {label}', color=color)
+            axs.plot(y_plus, u_plus, '--', label=f'Theory, {label}', color=color)
 
 
         SU2_Solution = None
@@ -123,14 +126,17 @@ def main():
 
                 # convert ks to ks+
                 label = finish
+                if finish == 'clean':
+                    label = '$k_s^+ = 0$'
+
                 if 'ks' in finish:
                     ks_str = finish.split('ks')[1]
                     ks = float(ks_str)
                     ks_plus = ks * u_star / (mu_inf / rho_inf)
 
-                    label = f'$ks^+$ {ks_plus:.0f}'
+                    label = f'$k_s^+ = {ks_plus:.0f}$'
 
-                axs.plot(y_plus, u_plus, ':', label=f'SU2 x={x}, {level}, {label}', color=color)
+                axs.plot(y_plus, u_plus, ':', label=f'SU2, $x={x}$, {label}', color=color)
 
 
     # Comparsion Data
@@ -145,8 +151,8 @@ def main():
     # ax.set_xlim(1, 1e4)
     axs.set_xlim(0.1, 2e4)
     # ax.set_ylim(case['cf_limits']['y'])
-    axs.set_ylabel('$u+$')
-    axs.set_xlabel('$y+$')
+    axs.set_ylabel('$u^+$')
+    axs.set_xlabel('$y^+$')
     sort_legend(axs)
 
     if not args.save:

@@ -15,6 +15,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-case', type=str, default='rumsey',
                     help='The Test-case to plot, possible values are: rumsey, blanchard, acharya')
+    parser.add_argument('-save', type=int, default=0,
+                        help='Saves the plot when set to 1')
     args = parser.parse_args()
 
     # set style stuff
@@ -24,7 +26,7 @@ def main():
 
     case = testcases[args.case]
 
-    s = 1.5
+    s = 1.0
     fig = plt.figure(figsize=(6.4*s, 4.8*s), layout='tight')
     axs = fig.subplots(1,1)
 
@@ -33,11 +35,6 @@ def main():
     axs.yaxis.set_tick_params(which='major', size=10, width=1.5, direction='in')
     axs.xaxis.set_tick_params(which='minor', size=7, width=1, direction='in')
     axs.yaxis.set_tick_params(which='minor', size=7, width=1, direction='in')
-
-    # Comparsion Data
-    for name, path in case['cf_comp_data'].items():
-        data = np.loadtxt(os.path.join(case['base_path'], 'data', path))
-        axs.plot(data[:,0], data[:,1], '+', label=name)
 
 
     finish =''
@@ -65,8 +62,9 @@ def main():
                 label = f'$ks^+$ {ks_plus:.0f}'
 
             # extract and plot cf
+            color=next(axs._get_lines.prop_cycler)['color']
             x_coords, cf = ADF_Solution.local_cf()
-            axs.plot(x_coords, cf, label=f'ADflow {level}, {label}')
+            axs.plot(x_coords, cf, label=f'ADflow {level}, {label}', color=color)
 
             # break loop as we have the finest grid
             break
@@ -86,7 +84,7 @@ def main():
         #     cf = (3.476 + 0.707 * np.log(x/ks))**(-2.46)
 
         if cf is not None:
-            axs.plot(x, cf, '--', label=f'Theory {label}')
+            axs.plot(x, cf, '--', label=f'Theory {label}', color=color)
 
         SU2_Solution = None
         for level in case['levels']:
@@ -95,9 +93,12 @@ def main():
                 continue
 
             x_coords, cf = SU2_Solution.local_cf()
-            axs.plot(x_coords, cf, ':', label=f'SU2 {level}, {label}')
+            axs.plot(x_coords, cf, ':', label=f'SU2 {level}, {label}', color=color)
 
-
+    # Comparsion Data
+    for name, path in case['cf_comp_data'].items():
+        data = np.loadtxt(os.path.join(case['base_path'], 'data', path))
+        axs.plot(data[:,0], data[:,1], '-.', label=name)
 
 
 
@@ -108,10 +109,19 @@ def main():
 
     sort_legend(axs)
 
+    if not args.save:
+        plt.suptitle(f'Flat plate, Zero pressure gradient, {args.case}')
+        plt.show()
+    else:
+        d = 'plots'
+        if not os.path.exists(d):
+            os.makedirs(d)
 
-    # axs.grid()
-    plt.suptitle(f'Flat plate, Zero pressure gradient, {args.case}')
-    plt.show()
+        plt.savefig(
+            os.path.join(d, f'cf_{args.case}.pdf'),
+            dpi=300, transparent=False, bbox_inches='tight'
+        )
+
 
 if __name__ == '__main__':
     main()

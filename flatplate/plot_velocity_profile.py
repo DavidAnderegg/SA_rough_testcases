@@ -1,7 +1,10 @@
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import numpy as np
 import os
 import argparse
+
+plt.style.use('tableau-colorblind10')
 
 from testcases import testcases
 from functions import ADF_load_solution, SU2_load_solution, sort_legend
@@ -12,18 +15,28 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-case', type=str, default='rumsey',
                     help='The Test-case to plot, possible values are: rumsey, blanchard, acharya')
+    parser.add_argument('-save', type=int, default=0,
+                        help='Saves the plot when set to 1')
     args = parser.parse_args()
+
+    # set style stuff
+    mpl.rcParams['font.family'] = 'Avenir'
+    plt.rcParams['font.size'] = 10
+    plt.rcParams['axes.linewidth'] = 2
+
     case = testcases[args.case]
 
 
-    s = 2
+    s = 1
     fig = plt.figure(figsize=(6.4*s, 4.8*s), layout='tight')
     axs = fig.subplots(1,1)
 
-    # Comparsion Data
-    for name, path in case['vp_comp_data'].items():
-        data = np.loadtxt(os.path.join(case['base_path'], 'data', path))
-        axs.plot(data[:,0], data[:,1], '+', label=name)
+    # Edit the major and minor ticks of the x and y axes
+    axs.xaxis.set_tick_params(which='major', size=10, width=1.5, direction='in')
+    axs.yaxis.set_tick_params(which='major', size=10, width=1.5, direction='in')
+    axs.xaxis.set_tick_params(which='minor', size=7, width=1, direction='in')
+    axs.yaxis.set_tick_params(which='minor', size=7, width=1, direction='in')
+
 
     for finish in case['finishes']:
         ADF_Solution = None
@@ -56,7 +69,8 @@ def main():
 
                     label = f'$ks^+$ {ks_plus:.0f}'
 
-                axs.plot(y_plus, u_plus, label=f'ADflow x={x}, {level}, {label}')
+                color=next(axs._get_lines.prop_cycler)['color']
+                axs.plot(y_plus, u_plus, label=f'ADflow x={x}, {level}, {label}', color=color)
 
             # break loop as we have the finest grid
             break
@@ -70,7 +84,7 @@ def main():
             # viscous sublayer
             y_plus = np.linspace(1e-3, 1.5e1, 100)
             u_plus = y_plus
-            axs.plot(y_plus, u_plus, '--')
+            axs.plot(y_plus, u_plus, '--', color=color)
 
             #log law
             kappa, C_plus = 0.41, 5.0
@@ -78,12 +92,16 @@ def main():
             u_plus = 1/kappa * np.log(y_plus) + C_plus
         elif 'ks' in finish:
             kappa = 0.41
+            C_plus = 8. - 1/kappa*np.log(ks_plus)
             y_plus = np.linspace(5e0, 1e4, len(rho))
-            y = (y_plus * mu_inf) / (rho * u_star)
-            u_plus = 1/kappa * np.log(y/ks) + 8.5
+            u_plus = 1/kappa * np.log(y_plus) + C_plus
+
+            ind = np.argwhere(u_plus < 0.)
+            u_plus[ind] = np.nan
+            y_plus[ind] = np.nan
 
         if u_plus is not None and y_plus is not None:
-            axs.plot(y_plus, u_plus, '--', label=f'Theory {label}')
+            axs.plot(y_plus, u_plus, '--', label=f'Theory {label}', color=color)
 
 
         SU2_Solution = None
@@ -112,9 +130,13 @@ def main():
 
                     label = f'$ks^+$ {ks_plus:.0f}'
 
-                axs.plot(y_plus, u_plus, label=f'SU2 x={x}, {level}, {label}')
+                axs.plot(y_plus, u_plus, ':', label=f'SU2 x={x}, {level}, {label}', color=color)
 
 
+    # Comparsion Data
+    for name, path in case['vp_comp_data'].items():
+        data = np.loadtxt(os.path.join(case['base_path'], 'data', path))
+        axs.plot(data[:,0], data[:,1], '-.', label=name)
 
 
 
@@ -125,10 +147,22 @@ def main():
     # ax.set_ylim(case['cf_limits']['y'])
     axs.set_ylabel('$u+$')
     axs.set_xlabel('$y+$')
-    axs.grid()
     sort_legend(axs)
-    plt.suptitle(f'Flat plate, Zero pressure gradient, {args.case}')
-    plt.show()
+
+    if not args.save:
+        plt.suptitle(f'Flat plate, Zero pressure gradient, {args.case}')
+        plt.show()
+    else:
+        d = 'plots'
+        if not os.path.exists(d):
+            os.makedirs(d)
+
+        plt.savefig(
+            os.path.join(d, f'vp_{args.case}.pdf'),
+            dpi=300, transparent=False, bbox_inches='tight'
+        )
+
+
 
 if __name__ == '__main__':
     main()

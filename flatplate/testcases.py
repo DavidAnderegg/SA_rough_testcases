@@ -9,7 +9,7 @@ testcases = {
         'finishes': ['clean'],
         'cf_comp_data': {
             'CFL3D': 'CFL3D_cf.dat',
-            'FUN3D': 'FUN3D_cf.dat',
+            # 'FUN3D': 'FUN3D_cf.dat',
         },
         'cf_limits': {
             'x': [-0.05, 2],

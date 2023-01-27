@@ -14,6 +14,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-case', type=str, default='rumsey',
                     help='The Test-case to plot, possible values are: rumsey, blanchard, acharya')
+    parser.add_argument('-save', type=int, default=0,
+                        help='Saves the plot when set to 1')
     args = parser.parse_args()
 
     # set style stuff
@@ -80,9 +82,19 @@ def main():
     axs[2].set_ylabel('$force_{momentum}$', labelpad=5)
     axs[3].set_ylabel('$C_d$', labelpad=5)
     axs[0].legend(frameon=False, fontsize=10, borderpad=1)
-    plt.suptitle(f'Flat plate, Zero pressure gradient, {args.case}')
-    plt.show()
 
+    if not args.save:
+        plt.suptitle(f'Flat plate, Zero pressure gradient, {args.case}')
+        plt.show()
+    else:
+        d = 'plots'
+        if not os.path.exists(d):
+            os.makedirs(d)
+
+        plt.savefig(
+            os.path.join(d, f'gc_{args.case}.pdf'),
+            dpi=300, transparent=False, bbox_inches='tight'
+        )
 
 
 

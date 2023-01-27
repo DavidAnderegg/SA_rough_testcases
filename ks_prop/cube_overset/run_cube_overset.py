@@ -43,7 +43,7 @@ solverOptions = {
     # General
     'monitorvariables':['resrho', 'resturb', 'cl','cd'],
     'printIterations': True,
-    'writeSurfaceSolution': True, 
+    'writeSurfaceSolution': False, 
     'writeVolumeSolution': True,
 #    'outputsurfacefamily': 'wall',
     'surfacevariables': ['cf', 'ch', 'cp'],

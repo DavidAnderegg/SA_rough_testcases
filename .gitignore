@@ -10,7 +10,8 @@ SU2
 *.pvsm
 
 #unignore some initial mesh-files
-!cube/cube_surf.cgns
+!cube_surf.cgns
+!cuboid_surf.cgns
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

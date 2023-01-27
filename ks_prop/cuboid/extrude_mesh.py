@@ -10,6 +10,8 @@ from idwarp import USMesh
 ks_rough = 1.0
 ks_clean = 0.1
 
+if not os.path.exists('meshes'):
+   os.makedirs('meshes')
 
 
 def main():
